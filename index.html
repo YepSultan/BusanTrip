@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Busan Trip · Sultan & JiaLi · Apr 24–26</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Inter:wght@300;400;500;600&family=Noto+Sans+SC:wght@300;400;500;700&display=swap" rel="stylesheet"/>
+
+  <style>
+    :root {
+      --sea:    #0ea5e9;
+      --deep:   #0369a1;
+      --coral:  #fb7185;
+      --pink:   #f472b6;
+      --bg:     #0c1425;
+      --card:   #132035;
+      --border: #1e3a5f;
+      --text:   #e2e8f0;
+      --muted:  #64748b;
+      --green:  #34d399;
+      --yellow: #fbbf24;
+      --purple: #a78bfa;
+      --orange: #fb923c;
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body {
+      background:var(--bg); color:var(--text);
+      font-family:'Inter','Noto Sans SC',sans-serif; line-height:1.6;
+      background-image:
+        radial-gradient(ellipse at 15% 0%, rgba(14,165,233,.09) 0%, transparent 55%),
+        radial-gradient(ellipse at 85% 100%, rgba(244,114,182,.07) 0%, transparent 55%);
+    }
+
+    /* ── LANG TOGGLE ─────────────────────────────────── */
+    .lang-bar {
+      position:fixed; top:1rem; right:1rem; z-index:999;
+      display:flex; background:rgba(12,20,37,.9);
+      border:1px solid var(--border); border-radius:999px;
+      backdrop-filter:blur(12px); overflow:hidden;
+    }
+    .lang-btn {
+      padding:.35rem .9rem; font-size:.8rem; font-weight:600;
+      cursor:pointer; border:none; background:transparent;
+      color:var(--muted); transition:all .2s;
+    }
+    .lang-btn.active { background:var(--sea); color:#fff; }
+
+    /* ── HERO ────────────────────────────────────────── */
+    .hero {
+      position:relative; padding:5rem 2rem 3.5rem;
+      text-align:center;
+      background:linear-gradient(180deg,rgba(3,105,161,.35) 0%,transparent 100%);
+      border-bottom:1px solid var(--border); overflow:hidden;
+    }
+    .hero::after {
+      content:''; position:absolute; bottom:-1px; left:0; right:0; height:40px;
+      background:var(--bg); clip-path:ellipse(55% 100% at 50% 100%);
+    }
+    .couple-tag {
+      display:inline-flex; align-items:center; gap:.5rem;
+      background:rgba(244,114,182,.12); border:1px solid rgba(244,114,182,.3);
+      border-radius:999px; padding:.3rem 1rem;
+      font-size:.8rem; color:var(--pink); font-weight:500;
+      letter-spacing:.04em; margin-bottom:1rem;
+    }
+    .hero h1 {
+      font-family:'Playfair Display',serif;
+      font-size:clamp(2.8rem,7vw,4.5rem);
+      background:linear-gradient(135deg,#fff 20%,var(--sea) 60%,var(--pink));
+      -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text;
+      line-height:1.1;
+    }
+    .hero-sub { color:var(--sea); font-size:1rem; font-weight:300; letter-spacing:.12em; text-transform:uppercase; margin-top:.5rem; }
+    .route-pill {
+      display:inline-flex; align-items:center; gap:.5rem;
+      background:rgba(14,165,233,.1); border:1px solid rgba(14,165,233,.25);
+      border-radius:999px; padding:.35rem 1rem;
+      font-size:.82rem; color:var(--sea); margin-top:.75rem;
+    }
+
+    /* countdown */
+    .countdown-wrap { display:flex; justify-content:center; gap:.75rem; margin-top:2rem; flex-wrap:wrap; }
+    .count-box {
+      background:rgba(14,165,233,.08); border:1px solid rgba(14,165,233,.25);
+      border-radius:14px; padding:.9rem 1.3rem; min-width:82px; text-align:center;
+    }
+    .count-num { font-size:2.4rem; font-weight:700; color:var(--sea); line-height:1; font-variant-numeric:tabular-nums; }
+    .count-label { font-size:.65rem; color:var(--muted); margin-top:.25rem; letter-spacing:.08em; text-transform:uppercase; }
+
+    /* ── LAYOUT ──────────────────────────────────────── */
+    main { max-width:1020px; margin:0 auto; padding:2rem; }
+    section { margin-bottom:3.5rem; scroll-margin-top:2rem; }
+    .section-title {
+      display:flex; align-items:center; gap:.75rem;
+      font-family:'Playfair Display',serif; font-size:1.55rem;
+      margin-bottom:1.5rem; padding-bottom:.75rem; border-bottom:1px solid var(--border);
+    }
+    .grid-3 { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; }
+    .grid-2 { display:grid; grid-template-columns:repeat(auto-fill,minmax(350px,1fr)); gap:1rem; }
+    .card {
+      background:var(--card); border:1px solid var(--border); border-radius:16px;
+      padding:1.25rem; transition:border-color .2s, transform .2s;
+    }
+    .card:hover { border-color:var(--sea); transform:translateY(-2px); }
+
+    /* ── WEATHER STRIP ───────────────────────────────── */
+    .weather-bar {
+      background:linear-gradient(135deg,rgba(14,165,233,.1),rgba(244,114,182,.07));
+      border:1px solid var(--border); border-radius:16px;
+      padding:1.25rem; display:flex; justify-content:space-around;
+      flex-wrap:wrap; gap:1rem; margin-bottom:2.5rem;
+    }
+    .w-day { text-align:center; }
+    .w-emoji { font-size:1.8rem; }
+    .w-date { font-size:.7rem; color:var(--sea); text-transform:uppercase; letter-spacing:.05em; }
+    .w-temp { font-weight:700; font-size:1rem; margin-top:.15rem; }
+    .w-desc { font-size:.75rem; color:var(--muted); }
+
+    /* ── DAY TABS ────────────────────────────────────── */
+    .day-tabs { display:flex; gap:.5rem; margin-bottom:1.5rem; flex-wrap:wrap; }
+    .day-tab {
+      flex:1; min-width:120px; padding:.7rem 1rem; text-align:center;
+      background:var(--card); border:1px solid var(--border); border-radius:12px;
+      cursor:pointer; transition:all .2s; font-size:.85rem; font-weight:500;
+    }
+    .day-tab:hover { border-color:var(--sea); }
+    .day-tab.active {
+      background:linear-gradient(135deg,rgba(14,165,233,.2),rgba(244,114,182,.15));
+      border-color:var(--sea); color:var(--text);
+    }
+    .day-tab .tab-date { font-size:.7rem; color:var(--sea); display:block; margin-bottom:.2rem; }
+    .day-panel { display:none; animation:fadeIn .3s ease; }
+    .day-panel.active { display:block; }
+    @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:none} }
+
+    /* timeline */
+    .timeline { position:relative; padding-left:2rem; }
+    .timeline::before {
+      content:''; position:absolute; left:7px; top:0; bottom:0; width:2px;
+      background:linear-gradient(to bottom,var(--sea),var(--pink),var(--border));
+    }
+    .tl-item { position:relative; margin-bottom:1.1rem; }
+    .tl-item::before {
+      content:''; position:absolute; left:-1.65rem; top:.45rem;
+      width:10px; height:10px; border-radius:50%;
+      background:var(--sea); border:2px solid var(--bg);
+    }
+    .tl-item.couple::before { background:var(--pink); }
+    .tl-time { font-size:.7rem; color:var(--sea); font-weight:600; letter-spacing:.05em; text-transform:uppercase; }
+    .tl-title { font-weight:600; font-size:.95rem; }
+    .tl-desc { font-size:.82rem; color:var(--muted); margin-top:.15rem; }
+    .tl-couple-tip {
+      display:inline-flex; align-items:center; gap:.3rem;
+      background:rgba(244,114,182,.1); border:1px solid rgba(244,114,182,.25);
+      border-radius:999px; padding:.15rem .6rem;
+      font-size:.72rem; color:var(--pink); margin-top:.35rem;
+    }
+
+    /* ── FOOD SPIN WHEEL ─────────────────────────────── */
+    .spin-wrap {
+      background:var(--card); border:1px solid var(--border);
+      border-radius:16px; padding:1.5rem; text-align:center; margin-bottom:1.5rem;
+    }
+    .spin-title { font-size:1rem; font-weight:600; margin-bottom:.5rem; }
+    .spin-subtitle { font-size:.82rem; color:var(--muted); margin-bottom:1.25rem; }
+    .spin-display {
+      background:linear-gradient(135deg,rgba(14,165,233,.1),rgba(244,114,182,.1));
+      border:2px solid var(--border); border-radius:16px;
+      padding:1.5rem; margin-bottom:1.25rem; min-height:100px;
+      display:flex; flex-direction:column; align-items:center; justify-content:center;
+      transition:all .3s;
+    }
+    .spin-display.spinning { animation:spinPulse .1s infinite alternate; }
+    @keyframes spinPulse { from{transform:scale(.97);opacity:.7} to{transform:scale(1.03);opacity:1} }
+    .spin-emoji { font-size:3rem; }
+    .spin-food-name { font-size:1.2rem; font-weight:700; margin-top:.5rem; }
+    .spin-food-kr { color:var(--sea); font-size:.85rem; }
+    .spin-food-price { color:var(--green); font-size:.8rem; margin-top:.25rem; }
+    .spin-btn {
+      background:linear-gradient(135deg,var(--sea),var(--pink));
+      border:none; border-radius:12px; padding:.75rem 2rem;
+      color:#fff; font-size:1rem; font-weight:700; cursor:pointer;
+      transition:transform .15s, box-shadow .15s;
+    }
+    .spin-btn:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(14,165,233,.3); }
+    .spin-btn:active { transform:scale(.97); }
+
+    /* ── BUDGET CALCULATOR ───────────────────────────── */
+    .budget-summary {
+      display:grid; grid-template-columns:repeat(auto-fill,minmax(160px,1fr));
+      gap:.75rem; margin-bottom:1.5rem;
+    }
+    .budget-stat {
+      background:var(--card); border:1px solid var(--border); border-radius:12px;
+      padding:1rem; text-align:center;
+    }
+    .budget-stat-num { font-size:1.4rem; font-weight:700; color:var(--sea); }
+    .budget-stat-label { font-size:.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; margin-top:.2rem; }
+    .budget-stat-num.over { color:var(--coral); }
+
+    .expense-list { display:flex; flex-direction:column; gap:.5rem; margin-bottom:1rem; }
+    .expense-item {
+      display:flex; align-items:center; gap:.75rem;
+      background:var(--card); border:1px solid var(--border);
+      border-radius:10px; padding:.65rem 1rem;
+      animation:fadeIn .25s ease;
+    }
+    .expense-cat { font-size:1.2rem; flex-shrink:0; }
+    .expense-desc { flex:1; font-size:.85rem; }
+    .expense-amount { font-weight:700; color:var(--yellow); font-size:.9rem; white-space:nowrap; }
+    .expense-del {
+      background:none; border:none; color:var(--muted); cursor:pointer;
+      font-size:1rem; padding:.2rem; transition:color .15s;
+    }
+    .expense-del:hover { color:var(--coral); }
+
+    .add-expense-form {
+      display:grid; grid-template-columns:auto 1fr auto auto; gap:.5rem; align-items:center;
+    }
+    .cat-select, .desc-input, .amount-input {
+      background:var(--card); border:1px solid var(--border); border-radius:8px;
+      padding:.55rem .75rem; color:var(--text); font-size:.85rem; outline:none;
+      transition:border-color .2s;
+    }
+    .cat-select { padding:.55rem .5rem; cursor:pointer; }
+    .cat-select:focus, .desc-input:focus, .amount-input:focus { border-color:var(--sea); }
+    .amount-input { width:110px; }
+    .add-btn {
+      background:var(--sea); border:none; border-radius:8px;
+      padding:.55rem 1rem; color:#fff; font-weight:700;
+      cursor:pointer; transition:background .15s; font-size:.9rem; white-space:nowrap;
+    }
+    .add-btn:hover { background:var(--deep); }
+
+    .progress-bar-wrap { margin-top:1rem; }
+    .progress-label { display:flex; justify-content:space-between; font-size:.78rem; color:var(--muted); margin-bottom:.35rem; }
+    .progress-track { height:8px; background:var(--border); border-radius:999px; overflow:hidden; }
+    .progress-fill { height:100%; border-radius:999px; transition:width .4s ease; background:linear-gradient(90deg,var(--green),var(--sea)); }
+    .progress-fill.warn { background:linear-gradient(90deg,var(--yellow),var(--orange)); }
+    .progress-fill.over { background:linear-gradient(90deg,var(--coral),#ff0000); }
+
+    /* ── SHARED WISHLIST ─────────────────────────────── */
+    .wishlist-input-row {
+      display:flex; gap:.5rem; margin-bottom:1rem;
+    }
+    .wish-input {
+      flex:1; background:var(--card); border:1px solid var(--border);
+      border-radius:10px; padding:.6rem 1rem; color:var(--text); font-size:.87rem; outline:none;
+      transition:border-color .2s;
+    }
+    .wish-input:focus { border-color:var(--pink); }
+    .wish-add-btn {
+      background:linear-gradient(135deg,var(--pink),var(--coral));
+      border:none; border-radius:10px; padding:.6rem 1.2rem;
+      color:#fff; font-weight:700; cursor:pointer; font-size:.9rem;
+    }
+    .wish-list { display:flex; flex-direction:column; gap:.5rem; }
+    .wish-item {
+      display:flex; align-items:center; gap:.75rem;
+      background:var(--card); border:1px solid var(--border); border-radius:10px;
+      padding:.65rem 1rem; animation:fadeIn .25s ease;
+    }
+    .wish-check {
+      width:18px; height:18px; border:2px solid var(--border); border-radius:5px;
+      flex-shrink:0; display:flex; align-items:center; justify-content:center;
+      cursor:pointer; transition:all .15s;
+    }
+    .wish-item.done .wish-check { background:var(--pink); border-color:var(--pink); }
+    .wish-item.done .wish-check::after { content:'♥'; color:#fff; font-size:.7rem; }
+    .wish-item.done .wish-text { text-decoration:line-through; color:var(--muted); }
+    .wish-text { flex:1; font-size:.85rem; }
+    .wish-del { background:none; border:none; color:var(--muted); cursor:pointer; font-size:1rem; transition:color .15s; }
+    .wish-del:hover { color:var(--coral); }
+    .wish-empty { text-align:center; padding:2rem; color:var(--muted); font-size:.85rem; }
+
+    /* ── TRANSPORT ───────────────────────────────────── */
+    .bus-hero {
+      background:linear-gradient(135deg,rgba(14,165,233,.12),rgba(167,139,250,.08));
+      border:1px solid rgba(14,165,233,.3); border-radius:16px; padding:1.5rem; margin-bottom:1.25rem;
+    }
+    .bus-route {
+      display:flex; align-items:center; justify-content:center;
+      gap:1rem; flex-wrap:wrap; margin-bottom:1rem;
+    }
+    .bus-city-name { font-size:1.2rem; font-weight:700; }
+    .bus-city-sub  { font-size:.75rem; color:var(--muted); text-align:center; }
+    .bus-arrow { color:var(--sea); text-align:center; }
+    .bus-duration  { font-size:.75rem; color:var(--sea); font-weight:600; }
+    .bus-info-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(170px,1fr)); gap:.75rem; }
+    .bus-stat { text-align:center; }
+    .bus-stat-num   { font-size:1.3rem; font-weight:700; color:var(--sea); }
+    .bus-stat-label { font-size:.72rem; color:var(--muted); text-transform:uppercase; letter-spacing:.05em; }
+    .transport-card {
+      background:var(--card); border:1px solid var(--border); border-radius:12px;
+      padding:1rem 1.25rem; display:flex; gap:1rem; align-items:flex-start;
+    }
+    .t-icon { font-size:1.8rem; flex-shrink:0; }
+    .t-title { font-weight:600; font-size:.95rem; }
+    .t-desc  { color:var(--muted); font-size:.82rem; margin-top:.2rem; }
+    .tip-banner {
+      background:rgba(244,114,182,.07); border:1px solid rgba(244,114,182,.2);
+      border-radius:12px; padding:1rem 1.25rem;
+      font-size:.85rem; color:var(--muted);
+      display:flex; gap:.75rem; align-items:flex-start; margin-bottom:.75rem;
+    }
+
+    /* ── FOOD CARDS ──────────────────────────────────── */
+    .food-card {
+      background:var(--card); border:1px solid var(--border); border-radius:16px;
+      padding:1.2rem; transition:all .2s;
+    }
+    .food-card:hover { border-color:var(--coral); transform:translateY(-2px); }
+    .food-emoji { font-size:2rem; display:block; margin-bottom:.4rem; }
+    .food-name  { font-weight:700; font-size:.95rem; }
+    .food-kr    { color:var(--sea); font-size:.78rem; margin:.1rem 0; }
+    .food-desc  { color:var(--muted); font-size:.8rem; margin-top:.35rem; }
+    .food-tip   { font-size:.75rem; color:var(--pink); margin-top:.35rem; }
+    .price-row  { display:flex; gap:.5rem; align-items:center; margin-top:.5rem; flex-wrap:wrap; }
+    .price  { background:rgba(52,211,153,.1);  color:var(--green);  font-size:.72rem; font-weight:600; padding:.15rem .5rem; border-radius:999px; }
+    .price2 { background:rgba(251,191,36,.1);  color:var(--yellow); font-size:.72rem; font-weight:600; padding:.15rem .5rem; border-radius:999px; }
+
+    /* ── PLACES ──────────────────────────────────────── */
+    .map-pill {
+      display:inline-flex; align-items:center; gap:.4rem;
+      background:rgba(14,165,233,.1); border:1px solid rgba(14,165,233,.3);
+      border-radius:999px; padding:.25rem .75rem;
+      font-size:.78rem; color:var(--sea); text-decoration:none;
+      margin-top:.5rem; transition:background .15s;
+    }
+    .map-pill:hover { background:rgba(14,165,233,.2); }
+    .tag { font-size:.7rem; font-weight:600; padding:.15rem .5rem; border-radius:999px; }
+    .tag.must   { background:rgba(251,113,133,.15); color:var(--coral); }
+    .tag.couple { background:rgba(244,114,182,.15); color:var(--pink); }
+    .tag.food-t { background:rgba(251,191,36,.15);  color:var(--yellow); }
+    .tag.free   { background:rgba(52,211,153,.15);  color:var(--green); }
+    .tag.night  { background:rgba(167,139,250,.15); color:var(--purple); }
+
+    /* ── PACKING CHECKLIST ───────────────────────────── */
+    .check-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:.5rem; }
+    .check-item {
+      display:flex; align-items:center; gap:.75rem;
+      background:var(--card); border:1px solid var(--border);
+      border-radius:10px; padding:.65rem 1rem;
+      cursor:pointer; transition:all .15s; user-select:none;
+    }
+    .check-item:hover { border-color:var(--green); }
+    .check-box {
+      width:18px; height:18px; border:2px solid var(--border);
+      border-radius:5px; flex-shrink:0; display:flex;
+      align-items:center; justify-content:center; transition:all .15s;
+    }
+    .check-item.done .check-box { background:var(--green); border-color:var(--green); }
+    .check-item.done .check-box::after { content:'✓'; color:#0c1425; font-size:.75rem; font-weight:800; }
+    .check-item.done .check-label { text-decoration:line-through; color:var(--muted); }
+    .check-label { font-size:.85rem; }
+    .check-section-label {
+      font-size:.72rem; font-weight:700; color:var(--muted);
+      letter-spacing:.08em; text-transform:uppercase;
+      padding:.5rem 0 .25rem; grid-column:1/-1;
+    }
+    .pack-progress { margin-bottom:1.25rem; }
+    .pack-progress-label { display:flex; justify-content:space-between; font-size:.82rem; color:var(--muted); margin-bottom:.4rem; }
+
+    @media(max-width:600px){
+      .add-expense-form { grid-template-columns:auto 1fr; }
+      .amount-input { width:90px; }
+      .count-box { padding:.7rem .9rem; min-width:65px; }
+      .count-num  { font-size:2rem; }
+      .day-tabs   { flex-direction:column; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- LANG TOGGLE -->
+<div class="lang-bar">
+  <button class="lang-btn active" onclick="setLang('en')">EN</button>
+  <button class="lang-btn" onclick="setLang('zh')">中文</button>
+</div>
+
+<!-- ══════════════════════════ HERO ══════════════════════════ -->
+<div class="hero">
+  <div class="couple-tag">💑 <span data-t="coupleTag">Couple Trip · 2 People</span></div>
+  <h1>Busan 부산</h1>
+  <p class="hero-sub"><span data-t="heroSub">April 24 – 26, 2026</span></p>
+  <div class="route-pill">🚌 <span data-t="route">Jeonju → Busan · (Express) Bus · ~2h 20min</span></div>
+  <div class="countdown-wrap">
+    <div class="count-box"><div class="count-num" id="cd-days">--</div><div class="count-label" data-t="days">Days</div></div>
+    <div class="count-box"><div class="count-num" id="cd-hours">--</div><div class="count-label" data-t="hours">Hours</div></div>
+    <div class="count-box"><div class="count-num" id="cd-mins">--</div><div class="count-label" data-t="mins">Mins</div></div>
+    <div class="count-box"><div class="count-num" id="cd-secs">--</div><div class="count-label" data-t="secs">Secs</div></div>
+  </div>
+</div>
+
+<main>
+
+  <!-- ── WEATHER ─────────────────────────────────────────── -->
+  <div class="weather-bar">
+    <div class="w-day"><div class="w-emoji">🌤️</div><div class="w-date" data-t="apr24">Apr 24 · Fri</div><div class="w-temp">16° / 10°C</div><div class="w-desc" data-t="partlyCloudy">Partly cloudy</div></div>
+    <div class="w-day"><div class="w-emoji">☀️</div><div class="w-date" data-t="apr25">Apr 25 · Sat</div><div class="w-temp">18° / 12°C</div><div class="w-desc" data-t="sunny">Sunny · best day!</div></div>
+    <div class="w-day"><div class="w-emoji">🌥️</div><div class="w-date" data-t="apr26">Apr 26 · Sun</div><div class="w-temp">17° / 11°C</div><div class="w-desc" data-t="cloudy">Cloudy</div></div>
+    <div class="w-day"><div class="w-emoji">🧥</div><div class="w-date" data-t="clothingTip">Clothing tip</div><div class="w-temp" style="font-size:.85rem" data-t="jacket">Light jacket</div><div class="w-desc" data-t="windy">Windy near sea</div></div>
+  </div>
+
+  <!-- ── TRANSPORT ───────────────────────────────────────── -->
+  <section id="transport">
+    <h2 class="section-title">🚌 <span data-t="transportTitle">Getting There & Around</span></h2>
+    <div class="bus-hero">
+      <div class="bus-route">
+        <div class="bus-city"><div class="bus-city-name">🏯 <span data-t="jeonju">Jeonju</span></div><div class="bus-city-sub">전주 고속버스터미널</div></div>
+        <div class="bus-arrow"><div>——— 🚌 ———→</div><div class="bus-duration" data-t="busDuration">~2h 20min · Express Bus</div></div>
+        <div class="bus-city"><div class="bus-city-name">🌊 <span data-t="busan">Busan</span></div><div class="bus-city-sub">부산 사상터미널 (Sasang)</div></div>
+      </div>
+      <div class="bus-info-grid">
+        <div class="bus-stat"><div class="bus-stat-num">~₩18,000</div><div class="bus-stat-label" data-t="perPersonOW">per person (one way)</div></div>
+        <div class="bus-stat"><div class="bus-stat-num">~₩72,000</div><div class="bus-stat-label" data-t="twoPeopleRT">2 people round trip</div></div>
+        <div class="bus-stat"><div class="bus-stat-num">2h 20m</div><div class="bus-stat-label" data-t="travelTime">travel time</div></div>
+        <div class="bus-stat"><div class="bus-stat-num">Kobus app</div><div class="bus-stat-label" data-t="bookApp">book in advance!</div></div>
+      </div>
+    </div>
+    <!-- <div class="tip-banner">
+      <div style="font-size:1.2rem">💡</div>
+      <div data-t="busTip">Book via <strong style="color:var(--pink)">Kobus app (코버스)</strong> in advance. Depart ~8–9am Friday. Return bus Sunday ~6–7pm. Arrives at <strong style="color:var(--sea)">Sasang terminal → take Line 2 subway</strong> directly to Haeundae or Gwangalli.</div>
+    </div> -->
+    <div class="grid-2">
+      <div class="transport-card"><div class="t-icon">🚇</div><div>
+        <div class="t-title" data-t="subwayTitle">Subway from Sasang (Line 2)</div>
+        <div class="t-desc" data-t="subwayDesc">Direct to Haeundae (14 stops, ~30min) and Gwangan (11 stops). 2-day pass ₩9,000/person. Use T-money card ₩1,500/ride.</div></div></div>
+      <div class="transport-card"><div class="t-icon">🚌</div><div>
+        <div class="t-title" data-t="busTitle">City Bus (a few spots)</div>
+        <div class="t-desc" data-t="busDesc">Gamcheon: Bus 1-1 from Toseong-dong. Taejongdae: Bus 88 from Nampo-dong. ₩1,500/ride with T-money.</div></div></div>
+      <div class="transport-card"><div class="t-icon">🚕</div><div>
+        <div class="t-title" data-t="taxiTitle">Kakao Taxi (nights)</div>
+        <div class="t-desc" data-t="taxiDesc">Use Kakao T app. Great after midnight. Base ₩4,800. Very affordable split between two.</div></div></div>
+      <div class="transport-card"><div class="t-icon">🏨</div><div>
+        <div class="t-title" data-t="stayTitle">Stay near Gwangalli (romantic 💑)</div>
+        <div class="t-desc" data-t="stayDesc">Both Haeundae & Gwangalli on Line 2 — easy access everywhere. Gwangalli = more romantic view of the Diamond Bridge.</div></div></div>
+    </div>
+  </section>
+
+  <!-- ── ITINERARY (tabbed) ───────────────────────────────── -->
+  <section id="itinerary">
+    <h2 class="section-title">🗓️ <span data-t="itineraryTitle">Itinerary</span></h2>
+
+    <div class="day-tabs">
+      <div class="day-tab active" onclick="switchDay(0)">
+        <span class="tab-date" data-t="day1date">Apr 24 · Fri</span>
+        <span data-t="day1short">Arrive & Haeundae</span>
+      </div>
+      <div class="day-tab" onclick="switchDay(1)">
+        <span class="tab-date" data-t="day2date">Apr 25 · Sat ☀️</span>
+        <span data-t="day2short">Gamcheon & Markets</span>
+      </div>
+      <div class="day-tab" onclick="switchDay(2)">
+        <span class="tab-date" data-t="day3date">Apr 26 · Sun</span>
+        <span data-t="day3short">Cliffs & Head Home</span>
+      </div>
+    </div>
+
+    <!-- Day 1 -->
+    <div class="day-panel active" id="panel-0">
+      <div class="timeline">
+        <div class="tl-item"><div class="tl-time">~08:00</div>
+        <div class="tl-title" data-t="d1t1">🚌 Bus from Jeonju → Busan Sasang</div>
+        <div class="tl-desc" data-t="d1d1">Depart early to maximize the day. ~2h 20min. Buy snacks at the terminal — good ride together.</div></div>
+        <div class="tl-item"><div class="tl-time">~10:30</div><div class="tl-title" data-t="d1t2">🚇 Sasang → Haeundae (Line 2, ~30min)</div>
+        <div class="tl-desc" data-t="d1d2">Drop bags at hotel. If early check-in not allowed, use coin locker at Haeundae station (₩3,000).</div></div>
+        <div class="tl-item couple"><div class="tl-time" data-t="morning">Morning</div><div class="tl-title" data-t="d1t3">🏖️ Haeundae Beach Walk</div>
+        <div class="tl-desc" data-t="d1d3">Stroll the 1.5km beach. April = not crowded, perfect weather. Walk to the east end for Dongbaekseom Island.</div>
+        <div class="tl-couple-tip">💑 <span data-t="d1tip3">First photos spot</span></div></div>
+        <div class="tl-item"><div class="tl-time" data-t="lunch">Lunch</div>
+        <div class="tl-title" data-t="d1t4">🍜 Milmyeon — Busan's Signature Noodle</div>
+        <div class="tl-desc" data-t="d1d4">Cold wheat noodles born in Busan. The streets near Haeundae have great spots. Very cheap and delicious.</div></div>
+        <div class="tl-item couple"><div class="tl-time" data-t="afternoon">Afternoon</div>
+        <div class="tl-title" data-t="d1t5">🌿 Dongbaekseom Island Loop</div>
+        <div class="tl-desc" data-t="d1d5">Small forested island connected by a causeway. Camellia trees, quiet ocean paths, very peaceful. 30 min walk.</div>
+        <div class="tl-couple-tip">💑 <span data-t="d1tip5">Most romantic walk in Busan</span></div></div>
+        <div class="tl-item couple"><div class="tl-time" data-t="sunset">Sunset</div>
+        <div class="tl-title" data-t="d1t6">🌅 Gwangalli Beach — Golden Hour</div>
+        <div class="tl-desc" data-t="d1d6">2 stops from Haeundae on Line 2. Diamond Bridge lights up at ~8pm. Sit on the beach and watch together.</div>
+        <div class="tl-couple-tip">💑 <span data-t="d1tip6">Most romantic view in Busan</span></div></div>
+        <div class="tl-item"><div class="tl-time" data-t="night">Night</div>
+        <div class="tl-title" data-t="d1t7">🍻 Gwangalli Rooftop Dinner + Drinks</div>
+        <div class="tl-desc" data-t="d1d7">Rooftop bars facing the bridge. Budget ~₩30,000–50,000 for two for dinner + drinks.</div></div>
+      </div>
+    </div>
+
+    <!-- Day 2 -->
+    <div class="day-panel" id="panel-1">
+      <div class="timeline">
+        <div class="tl-item couple">
+        <div class="tl-time" data-t="morning">Morning</div>
+        <div class="tl-title" data-t="d2t1">🎨 Gamcheon Culture Village</div>
+        <div class="tl-desc" data-t="d2d1">Busan's colourful hillside "Santorini". Tiny alleys, murals, art shops. Go before 11am to avoid crowds. Buy the ₩2,000 stamp map.</div>
+        <div class="tl-couple-tip">💑 <span data-t="d2tip1">Best photo spots in all of Busan</span></div></div>
+        <div class="tl-item"><div class="tl-time" data-t="lunch">Lunch</div>
+        <div class="tl-title" data-t="d2t2">🐟 Jagalchi Fish Market</div>
+        <div class="tl-desc" data-t="d2d2">Pick a live fish → pay ₩5,000 extra → eat it cooked upstairs. Full seafood feast for two ~₩30,000–50,000.</div></div>
+        <div class="tl-item"><div class="tl-time" data-t="afternoon">Afternoon</div>
+        <div class="tl-title" data-t="d2t3">🎬 BIFF Square + Gukje Market</div>
+        <div class="tl-desc" data-t="d2d3">Busan Film Festival's famous square. Try the legendary seed hotteok (씨앗호떡) at ₩1,500. Huge traditional market next door.</div></div>
+        <div class="tl-item couple"><div class="tl-time" data-t="lateAfternoon">Late Afternoon</div>
+        <div class="tl-title" data-t="d2t4">⛩️ Haedong Yonggungsa Temple</div>
+        <div class="tl-desc" data-t="d2d4">Sea-cliff Buddhist temple. Dragon statues, crashing waves. Free entry. Bus 181 from Haeundae (~30min).</div>
+        <div class="tl-couple-tip">💑 <span data-t="d2tip4">Ring the bell together for good luck 🔔</span></div></div>
+        <div class="tl-item couple"><div class="tl-time" data-t="night">Night</div>
+        <div class="tl-title" data-t="d2t5">🌃 Gwangalli Night — Best of the Trip</div>
+        <div class="tl-desc" data-t="d2d5">Saturday night bridge light show is spectacular. Walk the beach, rooftop bar, street food. Best night of the trip.</div>
+        <div class="tl-couple-tip">💑 <span data-t="d2tip5">Don't miss this night</span></div></div>
+      </div>
+    </div>
+
+    <!-- Day 3 -->
+    <div class="day-panel" id="panel-2">
+      <div class="timeline">
+        <div class="tl-item couple"><div class="tl-time" data-t="morning">Morning</div><div class="tl-title" data-t="d3t1">🏔️ Taejongdae Park</div><div class="tl-desc" data-t="d3d1">Dramatic sea cliffs at Busan's southern tip. Danubi mini-train ₩3,000/person. Lighthouse + ocean views. ~2 hours total.</div><div class="tl-couple-tip">💑 <span data-t="d3tip1">Hold hands at the cliff edge 🌊</span></div></div>
+        <div class="tl-item"><div class="tl-time" data-t="lunch">Lunch</div><div class="tl-title" data-t="d3t2">🥞 Haemul Pajeon — Seafood Pancake</div><div class="tl-desc" data-t="d3d2">Crispy seafood & green onion pancake. Busan-style is loaded with squid, shrimp, oysters. Perfect last meal. Best near Nampo-dong.</div></div>
+        <div class="tl-item"><div class="tl-time">~15:00</div><div class="tl-title" data-t="d3t3">🚇 Head to Sasang Terminal</div><div class="tl-desc" data-t="d3d3">Subway Line 2 back to Sasang. Check your pre-booked return bus. Buy snacks at GS25 for the ride.</div></div>
+        <div class="tl-item"><div class="tl-time">~17:00</div><div class="tl-title" data-t="d3t4">🚌 Bus back to Jeonju (~2h 20min)</div><div class="tl-desc" data-t="d3d4">Time to look back through your photos together 📸 See you next trip!</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FOOD SPIN WHEEL ──────────────────────────────────── -->
+  <section id="food">
+    <h2 class="section-title">🍽️ <span data-t="foodTitle">Must-Eat in Busan</span></h2>
+
+    <div class="spin-wrap">
+      <div class="spin-title" data-t="spinTitle">🎲 Can't decide what to eat?</div>
+      <div class="spin-subtitle" data-t="spinSub">Let fate decide for you two</div>
+      <div class="spin-display" id="spinDisplay">
+        <div class="spin-emoji" id="spinEmoji">🎯</div>
+        <div class="spin-food-name" id="spinName" data-t="spinPrompt">Press the button!</div>
+        <div class="spin-food-kr"  id="spinKr"></div>
+        <div class="spin-food-price" id="spinPrice"></div>
+      </div>
+      <button class="spin-btn" id="spinBtn" onclick="spinFood()">
+        <span data-t="spinBtn">🎰 Pick Random Food!</span>
+      </button>
+    </div>
+
+    <div class="grid-3">
+      <div class="food-card"><span class="food-emoji">🐠</span><div class="food-name" data-t="food1name">Hoe (Raw Fish)</div><div class="food-kr">회 · Jagalchi Market</div><div class="food-desc" data-t="food1desc">Pick a live fish from the tank → eat it 10 min later upstairs. Freshest sashimi ever.</div><div class="food-tip">💑 <span data-t="food1tip">Do this together — super fun experience</span></div><div class="price-row"><span class="price">₩30,000–50,000 <span data-t="forTwo">for two</span></span></div></div>
+      <div class="food-card"><span class="food-emoji">🥞</span><div class="food-name" data-t="food2name">Haemul Pajeon</div><div class="food-kr">해물파전 · Seafood pancake</div><div class="food-desc" data-t="food2desc">Crispy pancake loaded with squid, shrimp & oysters. Served with soy dipping sauce. Perfect with makgeolli rice wine.</div><div class="price-row"><span class="price">₩12,000–15,000 <span data-t="each">each</span></span></div></div>
+      <div class="food-card"><span class="food-emoji">🍜</span><div class="food-name" data-t="food3name">Milmyeon</div><div class="food-kr">밀면 · Unique to Busan</div><div class="food-desc" data-t="food3desc">Cold wheat noodles invented in Busan by Korean War refugees. You can't get the real thing anywhere else.</div><div class="price-row"><span class="price">₩8,000–10,000 <span data-t="each">each</span></span></div></div>
+      <div class="food-card"><span class="food-emoji">🥐</span><div class="food-name" data-t="food4name">BIFF Hotteok</div><div class="food-kr">씨앗 호떡 · BIFF Square</div><div class="food-desc" data-t="food4desc">Seed-filled sweet pancake. Only at BIFF Square. Crispy outside, gooey inside. Worth the queue.</div><div class="price-row"><span class="price2">₩1,500 <span data-t="each">each</span></span></div></div>
+      <div class="food-card"><span class="food-emoji">🦑</span><div class="food-name" data-t="food5name">Grilled Squid</div><div class="food-kr">오징어 구이 · Beach stalls</div><div class="food-desc" data-t="food5desc">Whole squid grilled on a stick. Get it at Haeundae boardwalk at night. Share one — they're big!</div><div class="food-tip">💑 <span data-t="food5tip">Classic beach date food</span></div><div class="price-row"><span class="price2">₩5,000–8,000</span></div></div>
+      <div class="food-card"><span class="food-emoji">🍢</span><div class="food-name" data-t="food6name">Eomuk (Fish Cake)</div><div class="food-kr">어묵 · Busan-famous</div><div class="food-desc" data-t="food6desc">Busan fish cakes are legendary. Eat on a skewer with free broth. Perfect for cold April evenings.</div><div class="price-row"><span class="price2">₩500–1,000 / <span data-t="skewer">skewer</span></span></div></div>
+    </div>
+  </section>
+
+  <!-- ── BUDGET TRACKER ───────────────────────────────────── -->
+  <section id="budget">
+    <h2 class="section-title">💰 <span data-t="budgetTitle">Budget Tracker</span></h2>
+
+    <div class="budget-summary">
+      <div class="budget-stat"><div class="budget-stat-num" id="totalSpent">₩0</div><div class="budget-stat-label" data-t="spent">Spent</div></div>
+      <div class="budget-stat"><div class="budget-stat-num" id="remaining">₩500,000</div><div class="budget-stat-label" data-t="remaining">Remaining</div></div>
+      <div class="budget-stat"><div class="budget-stat-num" id="perPersonAmt">₩0</div><div class="budget-stat-label" data-t="perPersonLabel">Per Person</div></div>
+      <div class="budget-stat">
+        <div style="display:flex; align-items:center; gap:.5rem; justify-content:center;">
+          <span style="font-size:.8rem; color:var(--muted)" data-t="budgetLabel">Budget:</span>
+          <input id="budgetGoal" type="number" value="500000" style="background:transparent; border:none; border-bottom:1px solid var(--border); color:var(--sea); font-weight:700; font-size:1rem; width:100px; text-align:center; outline:none;" onchange="updateBudget()"/>
+        </div>
+        <div class="budget-stat-label" data-t="totalKRW">Total KRW</div>
+      </div>
+    </div>
+
+    <div class="progress-bar-wrap" style="margin-bottom:1.5rem">
+      <div class="progress-label"><span data-t="progressLabel">Budget used</span><span id="pctLabel">0%</span></div>
+      <div class="progress-track"><div class="progress-fill" id="budgetBar" style="width:0%"></div></div>
+    </div>
+
+    <div class="expense-list" id="expenseList">
+      <!-- expenses rendered by JS -->
+    </div>
+
+    <div class="add-expense-form">
+      <select class="cat-select" id="expCat">
+        <option value="🚌">🚌</option>
+        <option value="🏨">🏨</option>
+        <option value="🍽️">🍽️</option>
+        <option value="🎭">🎭</option>
+        <option value="🍻">🍻</option>
+        <option value="🛍️">🛍️</option>
+        <option value="🚇">🚇</option>
+        <option value="💊">💊</option>
+      </select>
+      <input class="desc-input" id="expDesc" type="text" placeholder="Description..." />
+      <input class="amount-input" id="expAmount" type="number" placeholder="₩ amount" />
+      <button class="add-btn" onclick="addExpense()" data-t="addBtn">+ Add</button>
+    </div>
+  </section>
+
+  <!-- ── PLACES ───────────────────────────────────────────── -->
+  <section id="places">
+    <h2 class="section-title">📍 <span data-t="placesTitle">Key Places</span></h2>
+    <div class="grid-3">
+      <div class="card"><div style="font-weight:600;margin-bottom:.4rem">🎨 <span data-t="place1name">Gamcheon Culture Village</span></div><div style="font-size:.82rem;color:var(--muted)" data-t="place1desc">Bus 1-1 from Toseong-dong (Line 1). Go before 11am.</div><a class="map-pill" href="https://maps.google.com/?q=Gamcheon+Culture+Village+Busan" target="_blank">📍 Maps</a> <span class="tag couple">💑</span></div>
+      <div class="card"><div style="font-weight:600;margin-bottom:.4rem">🌉 <span data-t="place2name">Gwangalli Beach</span></div><div style="font-size:.82rem;color:var(--muted)" data-t="place2desc">Line 2: Gwangan Station. Diamond Bridge at 8pm.</div><a class="map-pill" href="https://maps.google.com/?q=Gwangalli+Beach+Busan" target="_blank">📍 Maps</a> <span class="tag couple">💑</span></div>
+      <div class="card"><div style="font-weight:600;margin-bottom:.4rem">🏖️ <span data-t="place3name">Haeundae Beach</span></div><div style="font-size:.82rem;color:var(--muted)" data-t="place3desc">Line 2: Haeundae Station. Walk 5 min.</div><a class="map-pill" href="https://maps.google.com/?q=Haeundae+Beach+Busan" target="_blank">📍 Maps</a> <span class="tag must" data-t="must">Must</span></div>
+      <div class="card"><div style="font-weight:600;margin-bottom:.4rem">🐟 <span data-t="place4name">Jagalchi Fish Market</span></div><div style="font-size:.82rem;color:var(--muted)" data-t="place4desc">Line 1: Jagalchi Station. Ground floor buy, upstairs eat.</div><a class="map-pill" href="https://maps.google.com/?q=Jagalchi+Market+Busan" target="_blank">📍 Maps</a> <span class="tag food-t" data-t="food">Food</span></div>
+      <div class="card"><div style="font-weight:600;margin-bottom:.4rem">⛩️ <span data-t="place5name">Haedong Yonggungsa</span></div><div style="font-size:.82rem;color:var(--muted)" data-t="place5desc">Bus 181 from Haeundae. Free entry. Sea cliff temple.</div><a class="map-pill" href="https://maps.google.com/?q=Haedong+Yonggungsa+Temple+Busan" target="_blank">📍 Maps</a> <span class="tag free" data-t="free">Free</span></div>
+      <div class="card"><div style="font-weight:600;margin-bottom:.4rem">🏔️ <span data-t="place6name">Taejongdae Park</span></div><div style="font-size:.82rem;color:var(--muted)" data-t="place6desc">Bus 88 from Nampo-dong. Entry ₩1,000. Mini-train ₩3,000.</div><a class="map-pill" href="https://maps.google.com/?q=Taejongdae+Park+Busan" target="_blank">📍 Maps</a> <span class="tag must" data-t="must">Must</span></div>
+    </div>
+  </section>
+
+  <!-- ── COUPLE WISHLIST ──────────────────────────────────── -->
+  <section id="wishlist">
+    <h2 class="section-title">💑 <span data-t="wishlistTitle">Our Wishlist</span></h2>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.25rem" data-t="wishlistSub">Things you both want to do / see / eat — check them off as you go!</p>
+    <div class="wishlist-input-row">
+      <input class="wish-input" id="wishInput" type="text" placeholder="Add something to your wishlist..." onkeydown="if(event.key==='Enter') addWish()"/>
+      <button class="wish-add-btn" onclick="addWish()">+ <span data-t="add">Add</span></button>
+    </div>
+    <div class="wish-list" id="wishList"></div>
+  </section>
+
+  <!-- ── PACKING CHECKLIST ────────────────────────────────── -->
+  <section id="checklist">
+    <h2 class="section-title">🎒 <span data-t="packTitle">Packing Checklist</span></h2>
+    <div class="pack-progress">
+      <div class="pack-progress-label"><span data-t="packed">Packed</span><span id="packCount">0 / 0</span></div>
+      <div class="progress-track"><div class="progress-fill" id="packBar" style="width:0%"></div></div>
+    </div>
+    <div class="check-grid" id="checkGrid"></div>
+  </section>
+
+</main>
+
+<footer style="text-align:center;padding:2.5rem 2rem;color:var(--muted);font-size:.82rem;border-top:1px solid var(--border);margin-top:2rem;">
+  🌊 Busan Trip · April 24–26, 2026 · Sultan &amp; JiaLi 💑
+</footer>
+
+<script>
+// ═══════════════════════════════════════════════════════════
+//  TRANSLATIONS
+// ═══════════════════════════════════════════════════════════
+const T = {
+  en: {
+    coupleTag:'Couple Trip · 2 People', heroSub:'April 24 – 26, 2026',
+    route:'Jeonju → Busan · Express Bus · ~2h 20min',
+    days:'Days', hours:'Hours', mins:'Mins', secs:'Secs',
+    apr24:'Apr 24 · Fri', apr25:'Apr 25 · Sat', apr26:'Apr 26 · Sun',
+    partlyCloudy:'Partly cloudy', sunny:'Sunny · best day!', cloudy:'Cloudy',
+    clothingTip:'Clothing tip', jacket:'Light jacket', windy:'Windy near sea',
+    transportTitle:'Getting There & Around',
+    jeonju:'Jeonju', busan:'Busan', busDuration:'~2h 20min · Express Bus',
+    perPersonOW:'per person (one way)', twoPeopleRT:'2 people round trip',
+    travelTime:'travel time', bookApp:'book in advance!',
+    busTip:'Book via <strong style="color:var(--pink)">Kobus app (코버스)</strong> in advance. Depart ~8–9am Friday. Return bus Sunday ~6–7pm. Arrives at <strong style="color:var(--sea)">Sasang terminal → take Line 2 subway</strong> directly to Haeundae or Gwangalli.',
+    subwayTitle:'Subway from Sasang (Line 2)', subwayDesc:'Direct to Haeundae (14 stops, ~30min) and Gwangan (11 stops). 2-day pass ₩9,000/person.',
+    busTitle:'City Bus (a few spots)', busDesc:'Gamcheon: Bus 1-1 from Toseong-dong. Taejongdae: Bus 88 from Nampo-dong. ₩1,500/ride.',
+    taxiTitle:'Kakao Taxi (nights)', taxiDesc:'Use Kakao T app. Great after midnight. Base ₩4,800',
+    stayTitle:'Stay near Gwangalli (romantic)', stayDesc:'Gwangalli = more romantic Diamond Bridge view.',
+    itineraryTitle:'Itinerary',
+    day1date:'Apr 24 · Fri', day1short:'Arrive & Haeundae',
+    day2date:'Apr 25 · Sat ☀️', day2short:'Gamcheon & Markets',
+    day3date:'Apr 26 · Sun', day3short:'Cliffs & Head Home',
+    morning:'Morning', lunch:'Lunch', afternoon:'Afternoon',
+    sunset:'Sunset', night:'Night', lateAfternoon:'Late Afternoon',
+    d1t1:'🚌 Bus from Jeonju → Busan Sasang', d1d1:'Depart early to maximize the day',
+    d1t2:'🚇 Sasang → Haeundae (Line 2, ~30min)', d1d2:'Drop bags at hotel',
+    d1t3:'🏖️ Haeundae Beach Walk', d1d3:'Stroll the 1.5km beach. April = not crowded, perfect weather. Walk to the east end for Dongbaekseom Island.',
+    d1tip3:'First photos spot',
+    d1t4:'🍜 Milmyeon — Busan\'s Signature Noodle', d1d4:'Cold wheat noodles born in Busan. The streets near Haeundae have great spots. Very cheap and delicious.',
+    d1t5:'🌿 Dongbaekseom Island Loop', d1d5:'Small forested island connected by a causeway. Camellia trees, quiet ocean paths. 30 min walk.',
+    d1tip5:'Most romantic walk in Busan',
+    d1t6:'🌅 Gwangalli Beach — Golden Hour', d1d6:'2 stops from Haeundae on Line 2. Diamond Bridge lights up at ~8pm. Sit on the beach together.',
+    d1tip6:'Most romantic view in Busan',
+    d1t7:'🍻 Gwangalli Rooftop Dinner', d1d7:'Rooftop bars facing the bridge. Kuta Palm Terrace (⭐ 4.7) ',
+    d2t1:'🎨 Gamcheon Culture Village', d2d1:'Busan\'s colourful hillside "Santorini". Go before 11am to avoid crowds. Buy the ₩2,000 stamp map.',
+    d2tip1:'Best photo spots in all of Busan',
+    d2t2:'🐟 Jagalchi Fish Market', d2d2:'Pick a live fish → pay ₩5,000 extra → eat it cooked upstairs. Full seafood feast for two ~₩30,000–50,000.',
+    d2t3:'🎬 BIFF Square + Gukje Market', d2d3:'Busan Film Festival\'s famous square. Try the legendary seed hotteok (씨앗호떡) at ₩1,500.',
+    d2t4:'⛩️ Haedong Yonggungsa Temple', d2d4:'Sea-cliff Buddhist temple. Dragon statues, crashing waves. Free entry. Bus 181 from Haeundae.',
+    d2tip4:'Ring the bell together for good luck 🔔',
+    d2t5:'🌃 Gwangalli Night — Best of the Trip', d2d5:'Saturday night bridge light show is spectacular. Walk the beach, rooftop bar, street food.',
+    d2tip5:'Don\'t miss this night',
+    d3t1:'🏔️ Taejongdae Park', d3d1:'Dramatic sea cliffs. Danubi mini-train ₩3,000/person. Lighthouse + ocean views. ~2 hours.',
+    d3tip1:'Hold hands at the cliff edge 🌊',
+    d3t2:'🥞 Haemul Pajeon — Seafood Pancake', d3d2:'Crispy pancake loaded with squid, shrimp & oysters. Perfect last meal near Nampo-dong.',
+    d3t3:'🚇 Head to Sasang Terminal', d3d3:'Subway Line 2 back to Sasang. Check your pre-booked return bus. Buy snacks at GS25.',
+    d3t4:'🚌 Bus back to Jeonju (~2h 20min)', d3d4:'Time to look back through your photos together 📸',
+    foodTitle:'Must-Eat in Busan',
+    spinTitle:'🎲 Can\'t decide what to eat?', spinSub:'Let fate decide for you two',
+    spinPrompt:'Press the button!', spinBtn:'🎰 Pick Random Food!',
+    food1name:'Hoe (Raw Fish)', food1desc:'Pick a live fish from the tank → eat it 10 min later upstairs. Freshest sashimi ever.', food1tip:'Do this together — super fun experience',
+    food2name:'Haemul Pajeon', food2desc:'Crispy seafood & green onion pancake loaded with squid, shrimp and oysters. Served with soy dipping sauce. Great with makgeolli!',
+    food3name:'Milmyeon', food3desc:'Cold wheat noodles invented in Busan by Korean War refugees. Can\'t get the real thing anywhere else.',
+    food4name:'BIFF Hotteok', food4desc:'Seed-filled sweet pancake. Only at BIFF Square. Crispy outside, gooey inside.',
+    food5name:'Grilled Squid', food5desc:'Whole squid grilled on a stick at Haeundae boardwalk at night. Share one — they\'re big!', food5tip:'Classic beach date food',
+    food6name:'Eomuk (Fish Cake)', food6desc:'Busan fish cakes are legendary. Eat on a skewer with free broth. Perfect for cold evenings.',
+    forTwo:'for two', each:'each', skewer:'skewer',
+    budgetTitle:'Budget Tracker', spent:'Spent', remaining:'Remaining',
+    perPersonLabel:'Per Person', budgetLabel:'Budget:', totalKRW:'Total KRW',
+    progressLabel:'Budget used', addBtn:'+ Add',
+    placesTitle:'Key Places',
+    place1name:'Gamcheon Culture Village', place1desc:'Bus 1-1 from Toseong-dong (Line 1). Go before 11am.',
+    place2name:'Gwangalli Beach', place2desc:'Line 2: Gwangan Station. Diamond Bridge lights at 8pm.',
+    place3name:'Haeundae Beach', place3desc:'Line 2: Haeundae Station. Walk 5 min.',
+    place4name:'Jagalchi Fish Market', place4desc:'Line 1: Jagalchi Station. Ground floor buy, upstairs eat.',
+    place5name:'Haedong Yonggungsa', place5desc:'Bus 181 from Haeundae. Free entry. Sea cliff temple.',
+    place6name:'Taejongdae Park', place6desc:'Bus 88 from Nampo-dong. Entry ₩1,000. Mini-train ₩3,000.',
+    must:'Must', food:'Food', free:'Free',
+    wishlistTitle:'Our Wishlist', wishlistSub:'Things you both want to do / see / eat — check them off as you go!',
+    add:'Add',
+    packTitle:'Packing Checklist', packed:'Packed',
+    packSections: ['📋 Essentials','👗 Clothing (3 days)','🧴 Toiletries','💑 Couple Extras'],
+    packItems: [
+      ['🛂 ID / Passport','💳 Card + some cash (KRW)','📱 Phone + charger','🔌 Power bank','🚌 Bus tickets (Kobus app)','🏨 Accommodation confirmed'],
+      ['🧥 Light jacket (sea wind!)','👕 3x T-shirts','👖 Comfortable pants','👟 Walking shoes (lots of hills)','🧦 3x Socks','🩱 1x nicer outfit for night out'],
+      ['🪥 Toothbrush + paste','☀️ Sunscreen SPF50','💊 Painkillers / medicine','🧴 Face wash'],
+      ['📷 Camera or clean phone storage','🎧 Shared earphones (bus ride)','📱 Kakao T installed (taxi)','📱 Naver Maps offline saved','💰 ~₩130,000 cash each'],
+    ],
+  },
+  zh: {
+    coupleTag:'情侣旅行 · 两人同行', heroSub:'2026年4月24–26日',
+    route:'全州 → 釜山 · 高速巴士 · 约2小时20分',
+    days:'天', hours:'时', mins:'分', secs:'秒',
+    apr24:'4月24日 · 周五', apr25:'4月25日 · 周六', apr26:'4月26日 · 周日',
+    partlyCloudy:'多云转晴', sunny:'晴天 · 最佳天气!', cloudy:'阴天',
+    clothingTip:'穿衣建议', jacket:'轻薄外套', windy:'海边风大',
+    transportTitle:'交通指南',
+    jeonju:'全州', busan:'釜山', busDuration:'约2小时20分 · 高速巴士',
+    perPersonOW:'每人单程', twoPeopleRT:'两人往返合计',
+    travelTime:'行程时长', bookApp:'提前预订!',
+    busTip:'通过 <strong style="color:var(--pink)">Kobus App (코버스)</strong> 提前购票。周五早上8–9点出发，周日傍晚6–7点返程。到达 <strong style="color:var(--sea)">사상터미널 → 乘地铁2号线</strong> 直达海云台或广安里。',
+    subwayTitle:'사상站出发（地铁2号线）', subwayDesc:'直达海云台（14站，约30分）、广安里（11站）。2日票₩9,000/人，或用T-money卡每次₩1,500。',
+    busTitle:'市内公交（部分景点需要）', busDesc:'甘川村：1-1路 from 土城站。太宗台：88路 from 南浦站。₩1,500/次。',
+    taxiTitle:'Kakao Taxi（夜间出行）', taxiDesc:'使用Kakao T应用。午夜后非常方便。起步价₩4,800',
+    stayTitle:'住在广安里（更浪漫 ）', stayDesc:'广安里的钻石大桥夜景更浪漫',
+    itineraryTitle:'行程安排',
+    day1date:'4月24日 · 周五', day1short:'抵达 & 海云台',
+    day2date:'4月25日 · 周六 ☀️', day2short:'甘川村 & 市场',
+    day3date:'4月26日 · 周日', day3short:'太宗台 & 返程',
+    morning:'上午', lunch:'午餐', afternoon:'下午',
+    sunset:'日落时分', night:'夜晚', lateAfternoon:'傍晚',
+    d1t1:'🚌 全州出发 → 釜山사상터미널', d1d1:'早出发，多玩一天！约2小时20分车程，可以在候车室买点零食边走边吃。',
+    d1t2:'🚇 사상站 → 海云台（2号线，约30分）', d1d2:'把行李放到酒店',
+    d1t3:'🏖️ 海云台海滩漫步', d1d3:'1.5公里海岸线慢慢走。四月人不多，风景很美。向东走可到冬柏岛。',
+    d1tip3:'拍第一张合照的绝佳地点',
+    d1t4:'🍜 밀면 — 釜山招牌冷面', d1d4:'釜山特有的小麦冷面，海云台周边有很多好店，便宜又好吃，一定要试！',
+    d1t5:'🌿 冬柏岛环岛散步', d1d5:'通过堤坝相连的小岛，山茶花盛开，小路幽静，很适合两个人慢慢走。30分钟走完。',
+    d1tip5:'釜山最浪漫的散步路线',
+    d1t6:'🌅 广安里海滩 — 黄金日落', d1d6:'从海云台乘2号线2站。钻石大桥约晚8点亮灯。坐在沙滩上一起看！',
+    d1tip6:'釜山最浪漫的夜景',
+    d1t7:'🍻 广安里天台晚餐 + 小酌', d1d7:'面朝大桥的天台酒吧。Kuta Palm Terrace',
+    d2t1:'🎨 甘川文化村', d2d1:'釜山版"圣托里尼"，五彩缤纷的山坡小村落，壁画、小巷、艺术品。11点前去人少，记得买₩2,000的盖章地图。',
+    d2tip1:'釜山最佳拍照地点，必去！',
+    d2t2:'🐟 札嘎其海鲜市场', d2d2:'在一楼选活鱼，多付₩5,000–10,000让二楼帮你做熟。两人海鲜大餐约₩30,000–50,000。',
+    d2t3:'🎬 BIFF广场 + 国际市场', d2d3:'釜山国际电影节的地标广场，必吃传说中的芝麻煎饼（씨앗호떡）只要₩1,500，旁边是大型传统市场。',
+    d2t4:'⛩️ 海东龙宫寺', d2d4:'海边悬崖上的佛寺，龙的雕像、海浪拍打，免费入场。从海云台乘181路公交约30分。',
+    d2tip4:'两人一起撞钟，祈愿幸福 🔔',
+    d2t5:'🌃 广安里夜景 — 此行最美一晚', d2d5:'周六夜晚的大桥灯光秀无比壮观。海滩散步、天台酒吧、路边小吃——不要错过这一晚！',
+    d2tip5:'这一晚是整趟旅行的高光时刻',
+    d3t1:'🏔️ 太宗台公园', d3d1:'釜山南端的断崖绝壁。乘园内"多努比"小火车₩3,000/人，灯塔和大海的景色令人震撼。约2小时。',
+    d3tip1:'在悬崖边相互依偎 🌊',
+    d3t2:'🥞 해물파전 — 海鲜葱饼', d3d2:'酥脆的海鲜葱饼，里面有鱿鱼、虾和牡蛎，蘸酱油吃。配막걸리米酒绝配，南浦站附近很多好店。',
+    d3t3:'🚇 前往사상터미널', d3d3:'乘2号线回到사상。确认好返程巴士时间，在GS25便利店买点路上吃的零食。',
+    d3t4:'🚌 返回全州（约2小时20分）', d3d4:'在车上一起翻看这两天拍的照片吧 📸 期待下次旅行！',
+    foodTitle:'釜山必吃美食',
+    spinTitle:'🎲 不知道吃什么？', spinSub:'让命运帮你们决定',
+    spinPrompt:'点击按钮！', spinBtn:'🎰 随机选一道菜！',
+    food1name:'生鱼片 (회)', food1desc:'在一楼选一条活鱼，10分钟后上楼就能吃到。最新鲜的刺身体验。', food1tip:'两人一起做，超有趣的体验',
+    food2name:'海鲜葱饼 (해물파전)', food2desc:'外脆内嫩的海鲜葱饼，满满的鱿鱼、虾和牡蛎，蘸酱油吃。配上米酒(막걸리)简直绝配！',
+    food3name:'밀면（小麦冷面）', food3desc:'釜山独有的小麦冷面，由朝鲜战争时期的难民创造，其他地方吃不到正宗的。',
+    food4name:'芝麻煎饼 (씨앗호떡)', food4desc:'只在BIFF广场才有的特色芝麻甜饼，外脆里糯，值得排队。',
+    food5name:'烤鱿鱼 (오징어 구이)', food5desc:'整只鱿鱼串烤，在海云台夜市摊位买。一只两个人分着吃，很大！', food5tip:'经典海边情侣小吃',
+    food6name:'鱼糕 (어묵)', food6desc:'釜山鱼糕全国有名，用竹签串着吃，配上免费的鱼糕汤，四月冷天喝正好。',
+    forTwo:'两人合计', each:'每人', skewer:'串',
+    budgetTitle:'旅行账本', spent:'已花', remaining:'剩余',
+    perPersonLabel:'人均', budgetLabel:'总预算:', totalKRW:'总额（韩元）',
+    progressLabel:'预算使用比例', addBtn:'+ 记账',
+    placesTitle:'主要地点',
+    place1name:'甘川文化村', place1desc:'从土城站乘1-1路公交。11点前到人少。',
+    place2name:'广安里海滩', place2desc:'2号线广安站下车。晚8点钻石大桥亮灯。',
+    place3name:'海云台海滩', place3desc:'2号线海云台站，步行5分钟。',
+    place4name:'札嘎其海鲜市场', place4desc:'1号线札嘎其站。一楼选鱼，二楼吃。',
+    place5name:'海东龙宫寺', place5desc:'从海云台乘181路公交约30分。免费。',
+    place6name:'太宗台公园', place6desc:'从南浦站乘88路公交。门票₩1,000。',
+    must:'必去', food:'美食', free:'免费',
+    wishlistTitle:'我们的心愿清单', wishlistSub:'记录两人想做的事、想看的、想吃的——完成后打勾！',
+    add:'添加',
+    packTitle:'打包清单', packed:'已打包',
+    packSections:['📋 必备物品','👗 衣物（3天）','🧴 洗漱用品','💑 情侣专项'],
+    packItems:[
+      ['🛂 身份证 / 护照','💳 银行卡 + 现金（韩元）','📱 手机 + 充电器','🔌 充电宝','🚌 巴士票（Kobus App）','🏨 酒店已确认'],
+      ['🧥 轻薄外套（海边风大！）','👕 短袖 × 3件','👖 舒适长裤','👟 步行鞋（坡路很多）','🧦 袜子 × 3双','🩱 晚上出门的好看一套'],
+      ['🪥 牙刷 + 牙膏','☀️ 防晒霜 SPF50','💊 止痛药 / 常用药','🧴 洗面奶'],
+      ['📷 相机 / 手机清出存储','🎧 共用耳机（坐巴士用）','📱 Kakao T 已安装（打车）','📱 Naver Maps 离线地图已下载','💰 每人约₩130,000现金'],
+    ],
+  }
+};
+
+// ═══════════════════════════════════════════════════════════
+//  LANGUAGE SYSTEM
+// ═══════════════════════════════════════════════════════════
+let lang = localStorage.getItem('busan-lang') || 'en';
+
+function setLang(l) {
+  lang = l;
+  localStorage.setItem('busan-lang', l);
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.textContent.trim() === (l === 'en' ? 'EN' : '中文')));
+  document.querySelectorAll('[data-t]').forEach(el => {
+    const key = el.getAttribute('data-t');
+    if (T[l][key] !== undefined) el.innerHTML = T[l][key];
+  });
+  // re-render dynamic lists after lang change
+  renderChecklist();
+  updateBudgetDisplay();
+}
+
+// ═══════════════════════════════════════════════════════════
+//  COUNTDOWN
+// ═══════════════════════════════════════════════════════════
+const tripDate = new Date('2026-04-24T08:00:00');
+function tick() {
+  const diff = tripDate - new Date();
+  if (diff <= 0) {
+    document.querySelector('.countdown-wrap').innerHTML =
+      `<div style="color:var(--pink);font-size:1.3rem;font-weight:700">${lang==='zh'?'💑 你们现在就在釜山！尽情享受！🌊':'💑 You are in Busan RIGHT NOW! Enjoy every second! 🌊'}</div>`;
+    return;
+  }
+  const d = Math.floor(diff/86400000);
+  const h = Math.floor((diff%86400000)/3600000);
+  const m = Math.floor((diff%3600000)/60000);
+  const s = Math.floor((diff%60000)/1000);
+  document.getElementById('cd-days').textContent  = d;
+  document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+  document.getElementById('cd-mins').textContent  = String(m).padStart(2,'0');
+  document.getElementById('cd-secs').textContent  = String(s).padStart(2,'0');
+}
+tick(); setInterval(tick, 1000);
+
+// ═══════════════════════════════════════════════════════════
+//  DAY TABS
+// ═══════════════════════════════════════════════════════════
+function switchDay(i) {
+  document.querySelectorAll('.day-tab').forEach((t,j) => t.classList.toggle('active', i===j));
+  document.querySelectorAll('.day-panel').forEach((p,j) => p.classList.toggle('active', i===j));
+}
+
+// ═══════════════════════════════════════════════════════════
+//  FOOD SPINNER
+// ═══════════════════════════════════════════════════════════
+const foods = [
+  { emoji:'🐠', nameEn:'Hoe (Raw Fish)', nameZh:'生鱼片 (회)', price:'₩30,000–50,000 for 2' },
+  { emoji:'🥞', nameEn:'Haemul Pajeon', nameZh:'海鲜葱饼', price:'₩12,000–15,000/each' },
+  { emoji:'🍜', nameEn:'Milmyeon', nameZh:'밀면 小麦冷面', price:'₩8,000–10,000/each' },
+  { emoji:'🥐', nameEn:'BIFF Hotteok', nameZh:'芝麻煎饼', price:'₩1,500 each' },
+  { emoji:'🦑', nameEn:'Grilled Squid', nameZh:'烤鱿鱼', price:'₩5,000–8,000' },
+  { emoji:'🍢', nameEn:'Eomuk Fish Cake', nameZh:'鱼糕串', price:'₩500–1,000/skewer' },
+  { emoji:'🦐', nameEn:'Jjimdak (Steamed Chicken)', nameZh:'蒸鸡', price:'₩20,000 for 2' },
+  { emoji:'🍣', nameEn:'Sashimi Set', nameZh:'刺身拼盘', price:'₩25,000–40,000' },
+];
+let spinTimer = null;
+function spinFood() {
+  const btn = document.getElementById('spinBtn');
+  btn.disabled = true;
+  const display = document.getElementById('spinDisplay');
+  display.classList.add('spinning');
+  let count = 0;
+  const duration = 40;
+  clearInterval(spinTimer);
+  spinTimer = setInterval(() => {
+    const f = foods[Math.floor(Math.random()*foods.length)];
+    document.getElementById('spinEmoji').textContent = f.emoji;
+    document.getElementById('spinName').textContent  = lang==='zh' ? f.nameZh : f.nameEn;
+    document.getElementById('spinKr').textContent    = '';
+    document.getElementById('spinPrice').textContent = f.price;
+    count++;
+    if (count >= duration) {
+      clearInterval(spinTimer);
+      display.classList.remove('spinning');
+      btn.disabled = false;
+    }
+  }, 60);
+}
+
+// ═══════════════════════════════════════════════════════════
+//  BUDGET TRACKER
+// ═══════════════════════════════════════════════════════════
+let expenses = JSON.parse(localStorage.getItem('busan-expenses') || '[]');
+
+function addExpense() {
+  const cat    = document.getElementById('expCat').value;
+  const desc   = document.getElementById('expDesc').value.trim();
+  const amount = parseInt(document.getElementById('expAmount').value);
+  if (!desc || !amount || amount <= 0) return;
+  expenses.push({ cat, desc, amount, id: Date.now() });
+  localStorage.setItem('busan-expenses', JSON.stringify(expenses));
+  document.getElementById('expDesc').value   = '';
+  document.getElementById('expAmount').value = '';
+  renderExpenses();
+}
+
+function deleteExpense(id) {
+  expenses = expenses.filter(e => e.id !== id);
+  localStorage.setItem('busan-expenses', JSON.stringify(expenses));
+  renderExpenses();
+}
+
+function renderExpenses() {
+  const list = document.getElementById('expenseList');
+  list.innerHTML = '';
+  if (expenses.length === 0) {
+    list.innerHTML = `<div style="text-align:center;padding:1.5rem;color:var(--muted);font-size:.85rem">${lang==='zh'?'还没有记录 — 旅途中记得记账！':'No expenses yet — track as you go!'}</div>`;
+  } else {
+    expenses.forEach(e => {
+      const el = document.createElement('div');
+      el.className = 'expense-item';
+      el.innerHTML = `<div class="expense-cat">${e.cat}</div><div class="expense-desc">${e.desc}</div><div class="expense-amount">₩${e.amount.toLocaleString()}</div><button class="expense-del" onclick="deleteExpense(${e.id})">✕</button>`;
+      list.appendChild(el);
+    });
+  }
+  updateBudgetDisplay();
+}
+
+function updateBudget() { updateBudgetDisplay(); }
+
+function updateBudgetDisplay() {
+  const goal  = parseInt(document.getElementById('budgetGoal').value) || 500000;
+  const total = expenses.reduce((s,e) => s+e.amount, 0);
+  const rem   = goal - total;
+  const pct   = Math.min((total/goal)*100, 100);
+  document.getElementById('totalSpent').textContent  = '₩' + total.toLocaleString();
+  document.getElementById('remaining').textContent   = '₩' + Math.max(rem,0).toLocaleString();
+  document.getElementById('perPersonAmt').textContent= '₩' + Math.round(total/2).toLocaleString();
+  document.getElementById('pctLabel').textContent    = Math.round(pct) + '%';
+  const bar = document.getElementById('budgetBar');
+  bar.style.width = pct + '%';
+  bar.className = 'progress-fill' + (pct > 100 ? ' over' : pct > 80 ? ' warn' : '');
+  document.getElementById('remaining').className = 'budget-stat-num' + (rem < 0 ? ' over' : '');
+}
+
+renderExpenses();
+
+// ═══════════════════════════════════════════════════════════
+//  WISHLIST
+// ═══════════════════════════════════════════════════════════
+let wishes = JSON.parse(localStorage.getItem('busan-wishes') || '[]');
+
+const defaultWishes = {
+  en: ['📸 Take a photo at Gamcheon Village','🌉 Watch the Diamond Bridge light up','🐟 Pick a live fish at Jagalchi','🔔 Ring the bell at Haedong Temple','🌊 Sit on the beach at sunset together'],
+  zh: ['📸 在甘川文化村拍合照','🌉 一起看钻石大桥夜景','🐟 在札嘎其市场选活鱼','🔔 在海东龙宫寺撞钟祈愿','🌊 两人坐在海滩看日落'],
+};
+
+if (wishes.length === 0) {
+  wishes = defaultWishes.en.map((text,i) => ({ id:i+1, text, done:false }));
+  localStorage.setItem('busan-wishes', JSON.stringify(wishes));
+}
+
+function renderWishes() {
+  const list = document.getElementById('wishList');
+  list.innerHTML = '';
+  if (wishes.length === 0) {
+    list.innerHTML = `<div class="wish-empty">${lang==='zh'?'还没有心愿 — 快来添加吧！':'No wishes yet — add something!'}</div>`;
+    return;
+  }
+  wishes.forEach(w => {
+    const el = document.createElement('div');
+    el.className = 'wish-item' + (w.done ? ' done' : '');
+    el.innerHTML = `<div class="wish-check" onclick="toggleWish(${w.id})"></div><span class="wish-text">${w.text}</span><button class="wish-del" onclick="deleteWish(${w.id})">✕</button>`;
+    list.appendChild(el);
+  });
+}
+
+function addWish() {
+  const text = document.getElementById('wishInput').value.trim();
+  if (!text) return;
+  wishes.push({ id: Date.now(), text, done: false });
+  localStorage.setItem('busan-wishes', JSON.stringify(wishes));
+  document.getElementById('wishInput').value = '';
+  renderWishes();
+}
+
+function toggleWish(id) {
+  wishes = wishes.map(w => w.id===id ? {...w, done:!w.done} : w);
+  localStorage.setItem('busan-wishes', JSON.stringify(wishes));
+  renderWishes();
+}
+
+function deleteWish(id) {
+  wishes = wishes.filter(w => w.id !== id);
+  localStorage.setItem('busan-wishes', JSON.stringify(wishes));
+  renderWishes();
+}
+
+renderWishes();
+
+// ═══════════════════════════════════════════════════════════
+//  PACKING CHECKLIST
+// ═══════════════════════════════════════════════════════════
+const savedPack = JSON.parse(localStorage.getItem('busan-pack') || '{}');
+
+function renderChecklist() {
+  const grid = document.getElementById('checkGrid');
+  grid.innerHTML = '';
+  const sections = T[lang].packSections;
+  const items    = T[lang].packItems;
+  let totalItems = 0, doneItems = 0;
+
+  sections.forEach((sec, si) => {
+    const label = document.createElement('div');
+    label.className = 'check-section-label';
+    label.textContent = sec;
+    grid.appendChild(label);
+
+    items[si].forEach((text, ii) => {
+      const key = `${si}-${ii}`;
+      totalItems++;
+      if (savedPack[key]) doneItems++;
+      const el = document.createElement('div');
+      el.className = 'check-item' + (savedPack[key] ? ' done' : '');
+      el.innerHTML = `<div class="check-box"></div><span class="check-label">${text}</span>`;
+      el.addEventListener('click', () => {
+        savedPack[key] = !savedPack[key];
+        el.classList.toggle('done', savedPack[key]);
+        if (!savedPack[key]) delete savedPack[key];
+        localStorage.setItem('busan-pack', JSON.stringify(savedPack));
+        updatePackProgress();
+      });
+      grid.appendChild(el);
+    });
+  });
+
+  updatePackProgress();
+}
+
+function updatePackProgress() {
+  const allItems = document.querySelectorAll('.check-item');
+  const done     = document.querySelectorAll('.check-item.done').length;
+  const total    = allItems.length;
+  const pct      = total ? (done/total)*100 : 0;
+  document.getElementById('packCount').textContent = `${done} / ${total}`;
+  document.getElementById('packBar').style.width   = pct + '%';
+}
+
+// ═══════════════════════════════════════════════════════════
+//  INIT
+// ═══════════════════════════════════════════════════════════
+setLang(lang);
+</script>
+</body>
+</html>
